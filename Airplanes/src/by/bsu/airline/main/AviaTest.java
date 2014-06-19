@@ -1,10 +1,10 @@
 package by.bsu.airline.main;
 
-import by.bsu.airline.model.*;
-
-import java.awt.List;
 import java.util.Collections;
 import java.util.Scanner;
+
+import by.bsu.airline.model.Airline;
+import by.bsu.airline.model.Plane;
 
 public class AviaTest {
 
@@ -25,17 +25,20 @@ public class AviaTest {
 		mAirline.addPlane(boeing747);
 		mAirline.addPlane(boeing947);
 
-		System.out.println("total Capacity of Airline: "
+		System.out.println("Total Airline Capacity: "
 				+ mAirline.totalCapacity());
 
-		System.out.println("total Passenger of Airline: "
+		System.out.println("Total Airline Passengers: "
 				+ mAirline.totalPassenger());
+		
 		sortPlanesByRange(mAirline.getPlanes());
+		
 		selectPlanesByFuelConsumption(mAirline);
 	}
 
 	private static void sortPlanesByRange(java.util.List<Plane> planes) {
-
+		
+		System.out.println();
 		Collections.sort(planes);
 		for (Plane plane : planes) {
 			System.out.println(plane.getName() + " range " + plane.getRange());
@@ -48,7 +51,7 @@ public class AviaTest {
 		while (true) {
 
 			System.out
-					.println("Range of consumption of fuel for the passenger and cargo plane: ");
+					.println("\nRange of consumption of fuel for the passenger and cargo plane (press space and enter to exit): ");
 
 			Scanner scanIn = new Scanner(System.in);
 			String s = scanIn.nextLine();
@@ -57,16 +60,25 @@ public class AviaTest {
 				break;
 
 			try {
+				
 				int fuel = Integer.parseInt(s);
+				boolean found = false;
+				
 				for (Plane plane : airline.getPlanes()) {
-					if (fuel < Plane.getFuelConsumtion()) {
-						System.out.println("For you it is necessary- "
-								+ plane.getName() + "With fuel consumption- "
+					if (fuel < plane.getFuelConsumtion()) {
+						found = true;
+						System.out.println("Your match is "
+								+ plane.getName() + "; fuel consumption: "
 								+ plane.getFuelConsumtion());
 					}
 				}
+				
+				if (!found) {
+					System.out.println("No match found, try again");	
+				}
+				
 			} catch (Exception e) {
-				System.out.println("Incorrect input, try once again");
+				System.out.println("Incorrect input, try again");
 			}
 		}
 

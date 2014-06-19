@@ -1,7 +1,5 @@
 package by.bsu.airline.model;
 
-import by.bsu.airline.model.Plane;
-import by.bsu.airline.main.AviaTest;
 import java.util.ArrayList;
 import java.util.List;
 

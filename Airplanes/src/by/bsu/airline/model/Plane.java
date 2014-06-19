@@ -4,7 +4,7 @@ public class Plane implements Comparable<Plane> {
 	public String name;
 	public int capacity;
 	public int passenger;
-	public static int fuelConsumtion;
+	public int fuelConsumtion;
 	public int range;
 
 	public void setName(String name) {
@@ -35,7 +35,7 @@ public class Plane implements Comparable<Plane> {
 		this.fuelConsumtion = fuelConsumtion;
 	}
 
-	public static int getFuelConsumtion() {
+	public int getFuelConsumtion() {
 		return fuelConsumtion;
 	}
 
