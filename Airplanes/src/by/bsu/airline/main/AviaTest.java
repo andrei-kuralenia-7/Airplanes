@@ -11,7 +11,7 @@ import by.bsu.airline.model.Plane;
 public class AviaTest {
 
 	private static Logger logger = Logger.getLogger(AviaTest.class);
-	
+
 	public static void main(String[] args) {
 
 		Plane mria = new Plane("AN Mria", 250 /* capacity */,
@@ -29,19 +29,17 @@ public class AviaTest {
 		mAirline.addPlane(boeing747);
 		mAirline.addPlane(boeing947);
 
-		logger.info("Total Airline Capacity: "
-				+ mAirline.totalCapacity());
+		logger.info("Total Airline Capacity: " + mAirline.totalCapacity());
 
-		logger.info("Total Airline Passengers: "
-				+ mAirline.totalPassenger());
-		
+		logger.info("Total Airline Passengers: " + mAirline.totalPassenger());
+
 		sortPlanesByRange(mAirline.getPlanes());
-		
+
 		selectPlanesByFuelConsumption(mAirline);
 	}
 
 	private static void sortPlanesByRange(java.util.List<Plane> planes) {
-		
+
 		Collections.sort(planes);
 		for (Plane plane : planes) {
 			logger.info(plane.getName() + " range " + plane.getRange());
@@ -62,23 +60,23 @@ public class AviaTest {
 				break;
 
 			try {
-				
+
 				int fuel = Integer.parseInt(s);
 				boolean found = false;
-				
+
 				for (Plane plane : airline.getPlanes()) {
 					if (fuel < plane.getFuelConsumtion()) {
 						found = true;
-						logger.info("Your match is "
-								+ plane.getName() + "; fuel consumption: "
+						logger.info("Your match is " + plane.getName()
+								+ "; fuel consumption: "
 								+ plane.getFuelConsumtion());
 					}
 				}
-				
+
 				if (!found) {
-					logger.info("No match found, try again");	
+					logger.info("No match found, try again");
 				}
-				
+
 			} catch (Exception e) {
 				logger.info("Incorrect input, try again");
 			}
