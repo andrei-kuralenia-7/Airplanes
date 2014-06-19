@@ -3,11 +3,15 @@ package by.bsu.airline.main;
 import java.util.Collections;
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
+
 import by.bsu.airline.model.Airline;
 import by.bsu.airline.model.Plane;
 
 public class AviaTest {
 
+	private static Logger logger = Logger.getLogger(AviaTest.class);
+	
 	public static void main(String[] args) {
 
 		Plane mria = new Plane("AN Mria", 250 /* capacity */,
@@ -25,10 +29,10 @@ public class AviaTest {
 		mAirline.addPlane(boeing747);
 		mAirline.addPlane(boeing947);
 
-		System.out.println("Total Airline Capacity: "
+		logger.info("Total Airline Capacity: "
 				+ mAirline.totalCapacity());
 
-		System.out.println("Total Airline Passengers: "
+		logger.info("Total Airline Passengers: "
 				+ mAirline.totalPassenger());
 		
 		sortPlanesByRange(mAirline.getPlanes());
@@ -38,10 +42,9 @@ public class AviaTest {
 
 	private static void sortPlanesByRange(java.util.List<Plane> planes) {
 		
-		System.out.println();
 		Collections.sort(planes);
 		for (Plane plane : planes) {
-			System.out.println(plane.getName() + " range " + plane.getRange());
+			logger.info(plane.getName() + " range " + plane.getRange());
 		}
 
 	}
@@ -50,8 +53,7 @@ public class AviaTest {
 
 		while (true) {
 
-			System.out
-					.println("\nRange of consumption of fuel for the passenger and cargo plane (press space and enter to exit): ");
+			logger.info("Range of consumption of fuel for the passenger and cargo plane (press space and enter to exit): ");
 
 			Scanner scanIn = new Scanner(System.in);
 			String s = scanIn.nextLine();
@@ -67,21 +69,21 @@ public class AviaTest {
 				for (Plane plane : airline.getPlanes()) {
 					if (fuel < plane.getFuelConsumtion()) {
 						found = true;
-						System.out.println("Your match is "
+						logger.info("Your match is "
 								+ plane.getName() + "; fuel consumption: "
 								+ plane.getFuelConsumtion());
 					}
 				}
 				
 				if (!found) {
-					System.out.println("No match found, try again");	
+					logger.info("No match found, try again");	
 				}
 				
 			} catch (Exception e) {
-				System.out.println("Incorrect input, try again");
+				logger.info("Incorrect input, try again");
 			}
 		}
 
-		System.out.println("Program end");
+		logger.info("Program end");
 	}
 }
