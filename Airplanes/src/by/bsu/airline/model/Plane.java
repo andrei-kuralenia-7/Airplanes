@@ -87,14 +87,7 @@ public class Plane implements Comparable<Plane> {
 		return name.equals(tmp.name) && range == tmp.range;
 	}
 
-	public int compareTo(Plane planes) {
-		Plane tmp = (Plane) planes;
-		int result = name.compareTo(tmp.name);
-		if (result != 0)
-			return result;
-		result = range - tmp.range;
-		if (result != 0)
-			return (int) (result / Math.abs(result));
-		return result;
+	public int compareTo(Plane p) {
+		return Integer.signum(this.getRange() - p.getRange());
 	}
 }
